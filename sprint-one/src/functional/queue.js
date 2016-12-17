@@ -4,10 +4,11 @@
 //   // Use an object with numeric keys to store values
 //   var storage = {};
 
+
 //   // Implement the methods below
 //   var head = 0; 
 //   var tail = 0;
-//   var size=0; //{1:'a', 2:'b'}
+//   var size = 0; 
 
 //   someInstance.enqueue = function(value) {
 //    storage[tail] = value;
@@ -17,8 +18,8 @@
 //   };
 
 //   someInstance.dequeue = function() {
-//     if(size > 0) {
-//       var data=storage[head];
+//     if( size > 0 ) {
+//       var data = storage[head];
 //        delete storage[head];
 //        head++;
 //        size--;
@@ -30,25 +31,22 @@
 //     return size;
 //   };
 
-//   return someInstance;
-// };
-
 var Queue = function () {
   var someInstance = {};
   var storage = {};
   var count = 0;
   someInstance.enqueue = function (value) {
-     storage[count] = value;
-     count++;
-  }
+    storage[count] = value;
+    count++;
+  };
   someInstance.dequeue = function() {
-     var oldKey = Object.keys(storage)[0];
-     var result = storage[oldKey];
-     delete storage[oldKey];
-     return result;
-  }
+    var oldKey = Object.keys(storage)[0];
+    var result = storage[oldKey];
+    delete storage[oldKey];
+    return result;
+  };
   someInstance.size = function() {
-    return Object.keys(storage).length
-  }
+    return Object.keys(storage).length;
+  };
   return someInstance;
-}
+};
