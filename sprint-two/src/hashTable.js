@@ -12,24 +12,35 @@ HashTable.prototype.insert = function(k, v) {
     innerArray.push([k, v]);
     this._storage.set(index, innerArray);
   } else {
-    this._storage.set(index,[k,v]);
+    var indexArray = this._storage.get(index);
+    indexArray.push([k, v]);
+    this._storage.set(index, indexArray);
   }
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  for (var i = 0; i < this._storage.storage.length; i++) {
-    var innerArray = this._storage.storage[i];
+  var indexArray = this._storage.get(index);
+  var value;
+  for (var i = 0; i < indexArray.length; i++) {
+    var innerArray = indexArray[i];
     if (innerArray[0] === k) {
-      return innerArray[1]; 
+      value = innerArray[1]; 
     }
   }
+  return value;
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var innerArray = this._storage.get(index);
+  for (var i = 0; i < innerArray.length; i++) {
+    if (innerArray[i][0] === k) {
+      innerArray.splice(i, 1);
+    }
+  }
 };
-
+ 
 
 
 /*
