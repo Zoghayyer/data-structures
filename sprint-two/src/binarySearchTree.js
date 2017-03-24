@@ -1,48 +1,48 @@
 var BinarySearchTree = function(value) {
-  var instances = {};
-  instances.value = value;
-  instances.left = null;
-  instances.right = null; 
-  _.extend(instances, methodsInstance);
-  return instances;
-};
-var methodsInstance = {};
-methodsInstance.insert = function(val) {
-  if (this.value > val) {
+
+  var binaryTree = Object.create(binaryTreePrototype);
+  binaryTree.value = value;
+  binaryTree.left = null;
+  binaryTree.right = null;
+  return binaryTree;
+  };
+
+var binaryTreePrototype = {};
+
+binaryTreePrototype.insert = function(val) {
+  if (val < this.value) {
     if (this.left === null) {
       this.left = BinarySearchTree(val);
     } else {
       this.left.insert(val);
     }
-  } else if (this.value < val) {
+  } else if (val > this.value) {
     if (this.right === null) {
       this.right = BinarySearchTree(val);
     } else {
       this.right.insert(val);
     }
-  } 
-};
-methodsInstance.contains = function(val) {
-  if (this.value === val) {
-    return true;
-  } else if (this.right && this.value < val ) {
-    return this.right.contains(val);
-  } else if (this.left && this.value > val) {
-    return this.left.contains(val);
-  } 
-  return false;
-};
-methodsInstance.depthFirstLog = function(cb) {
-  cb(this.value);
-  if (this.left) {
-    this.left.depthFirstLog(cb);
-  } else if (this.right) {
-    this.right.depthFirstLog(cb);
+  } else {
+    // do nothing: The tree already contains this value
   }
 };
- 
 
-/*
- * Complexity: What is the time complexity of the above functions?
- */
- 
+binaryTreePrototype.contains = function(val) {
+  if (val === this.value) {
+    return true;
+  } else if (val < this.value) {
+    return !!(this.left && this.left.contains(val));
+  } else if (val > this.value) {
+    return !!(this.right && this.right.contains(val));
+  }
+};
+
+binaryTreePrototype.depthFirstLog = function(callBack) {
+  callBack(this.value);
+  if (this.left) {
+    this.left.depthFirstLog(callBack);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(callBack);
+  }
+};
