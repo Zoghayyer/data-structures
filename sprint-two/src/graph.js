@@ -4,10 +4,7 @@
 //   - Store nodes and edges in objects
 //   - Store relationships in arrays (adjacency matrix)
 //
-// The two solutions are delineated by comment blocks
-// To use the Adjacency Matrix (AM) version, uncomment the line of
-// code near the end of this file.
-
+//
 //////////////////////////////////////////////////////////////////
 // Implementation #1:
 // Store nodes and edges in objects
