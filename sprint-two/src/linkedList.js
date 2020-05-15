@@ -16,7 +16,7 @@ var LinkedList = function() {
     }
 
     list.tail = newTail;
-    };
+  };
 
   list.removeHead = function() {
 
@@ -28,7 +28,7 @@ var LinkedList = function() {
     list.head = list.head.next;
 
     return currentHead.value;
-      };
+  };
 
   list.contains = function(target) {
 
